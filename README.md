@@ -1,156 +1,165 @@
-# cheap proxies: what per-IP and per-GB pricing really costs, and how to buy residential IPs that don't expire
+# mua proxy giá rẻ: bảng giá theo IP và theo GB, cách chọn IP sạch cho MMO và thanh toán tại Việt Nam
 
-Most people searching for cheap proxies already have a quote in front of them. The problem usually isn't that the number is too high — it's that the number doesn't survive contact with month two. A $3/GB rate with a 10 GB monthly minimum costs $30 whether you scrape 10 GB or 400 MB. A $0.22/IP rate turns into $0.30/IP the moment you order 20 IPs instead of 10,000.
+Người gõ cụm "mua proxy giá rẻ" lên Google thường rơi vào một trong hai nhóm. Nhóm thứ nhất cần vài chục IP để nuôi tài khoản, đăng bài, chạy quảng cáo, mở nhiều profile trên antidetect browser. Nhóm thứ hai cần proxy để chạy tool crawl, kiểm tra giá, kiểm tra vị trí hiển thị, và quan tâm tới dung lượng hơn là số lượng IP.
 
-So "cheap" is really a question about billing structure. Divide providers into three price tags and the picture gets a lot clearer:
+Hai nhóm này không dùng chung một cách tính tiền. Và đó là lý do nhiều người mua gói "rẻ" xong vẫn thấy tốn: mua 100 IP cho một công việc chỉ cần 5 GB, hoặc mua 5 GB cho một công việc tải nặng và cháy dung lượng trong hai buổi chiều.
 
-- **Per IP, per month** — predictable, but you pay for idle capacity
-- **Per GB** — flexible, but rates swing 5x between the entry tier and the bulk tier
-- **Per successful request** — the only number that matters in production, and the one nobody advertises
+Phần dưới đây đi theo đúng thứ tự bạn cần: mô hình tính giá nào ứng với việc gì, mặt bằng giá hiện tại của 9Proxy – một nhà cung cấp proxy dân cư đang nằm ở phân khúc rẻ, cách trả tiền từ Việt Nam, và những chỗ dễ mất tiền oan.
 
-The third one is why a $1/GB provider can be more expensive than a $3/GB provider if it fails on your target and you have to retry.
+## Proxy "free" không phải proxy giá rẻ
 
-## The three ways a cheap proxy quote quietly gets expensive
+Trước khi so giá, cần gạt bỏ một lựa chọn. Proxy miễn phí lấy từ các danh sách công khai không phải là phương án tiết kiệm, vì chúng gần như luôn nằm trong danh sách đen: một IP bị hàng trăm người dùng cùng lúc, tốc độ không ổn định, và các nền tảng lớn đã biết mặt. Kết quả là bạn đăng nhập phát là gặp captcha, hoặc tài khoản bị gắn cờ ngay từ lần đầu.
 
-**1. Traffic that expires, or a minimum you can't shrink.** Monthly subscriptions built around a bandwidth allowance punish uneven workloads. If your project burns 80 GB in a busy week and 4 GB the next, you bought capacity you never used. Pay-as-you-go balances don't have that problem — but check the validity window, because "never expires" and "expires in 180 days" are very different products at the same rate.
+Chi phí thực của proxy miễn phí không nằm ở tiền mua, mà ở thời gian sửa lỗi và ở tài khoản bị khoá.
 
-**2. Headline rates that require volume.** Decodo's own writeup on budget ISP proxies makes the point bluntly: Webshare's $0.225/IP rate requires a 10,000-IP order, while the 20-IP package costs $0.30/IP. The same pattern shows up across the market. The advertised price is the price at scale, not the price you'll pay on day one.
+Nên câu hỏi đúng không phải "có chỗ nào miễn phí không", mà là "mức rẻ hợp lý của proxy dân cư đang nằm ở đâu". Ở phân khúc bình dân, mặt bằng chung hiện tại dao động khoảng 0,7–2$/GB với proxy dân cư, tuỳ số lượng mua. Một số nhà cung cấp bán theo IP với băng thông không giới hạn, và giá trên mỗi IP giảm mạnh khi mua số lượng lớn.
 
-**3. Free proxies.** Zero dollars, and there's a reason. ZDNET's 2026 buyer's guide recommends paid providers specifically because many free options monetize you instead — through data resale or worse. PCMag's proxy coverage makes the same argument, and adds that free pools are shared, logged, and unpredictable. If your traffic matters at all, free is the most expensive tier.
+## Chốt mô hình tính tiền trước khi so giá
 
-For context on where the market sits in 2026: premium residential bandwidth clusters around **$3–$8 per GB**, a budget tier sits under **$2 per GB**, and datacenter IPs are cheaper still. That's the backdrop for anything below.
+Đây là bước quyết định hoá đơn của bạn, và cũng là chỗ các trang so sánh thường bỏ qua.
 
-## Where 9Proxy sits in that picture
+**Trả theo IP**: bạn mua một số lượng IP cố định, băng thông không giới hạn trong thời gian IP đó còn hoạt động. IP dân cư sống vài giờ đến khoảng 24 giờ tuỳ từng IP, nên bạn cứ dùng hết, IP nào tắt thì thay. Mô hình này hợp với người cần giữ phiên – đăng nhập, thao tác liên tục, tải dữ liệu nặng mà không phải đếm từng MB.
 
-9Proxy sells residential proxies only. Its official documentation describes two products: **Residential Proxy by IPs** (a fixed number of residential IPs with unlimited traffic while each IP is active) and **Residential Proxy by GB** (a bandwidth balance that generates unlimited endpoints). Bundles combine both. There's no monthly subscription — everything is a prepaid balance.
+**Trả theo GB**: bạn mua một cục dung lượng, được tạo bao nhiêu endpoint cũng được, miễn là còn GB. IP xoay theo từng request hoặc sticky theo phiên. Hợp với tool chạy nhiều request nhẹ, cần đổi IP liên tục, hoặc công việc có khối lượng thay đổi khó đoán.
 
-That distinction matters more than the sticker price. On the IP side, bandwidth is effectively unlimited, so heavy data transfer doesn't cost extra. Each residential IP stays alive somewhere between a few hours and roughly 24 hours. On the GB side, you're paying for traffic with unlimited endpoint generation, which suits rotation-heavy work where each request is light.
+Với 9Proxy, cả hai mô hình đều có sẵn và dùng chung một tài khoản:
 
-Two practical differences between the models, straight from the docs:
-
-|  | Residential by IPs | Residential by GB |
+| Tiêu chí | Gói theo IP | Gói theo GB |
 | --- | --- | --- |
-| Billing | Fixed package by IP count | Fixed package by GB |
-| Validity | IPs never expire until used | 180 days (unlimited on Enterprise) |
-| Traffic | Unlimited while active | Limited to purchased GB |
-| IP lifetime | A few hours to ~24h | Rotates per request or per session |
-| Setup | Requires the 9Proxy desktop app for local port forwarding | Works from the dashboard via user/pass or IP whitelist |
+| Cách tính tiền | Theo số lượng IP | Theo dung lượng |
+| Băng thông | Không giới hạn trong lúc IP hoạt động | Trừ dần theo GB đã mua |
+| Vòng đời IP | Vài giờ đến khoảng 24 giờ | Xoay theo request hoặc sticky theo phiên |
+| Hiệu lực số dư | IP chưa dùng không hết hạn | 180 ngày (gói Enterprise: không hết hạn) |
+| Cách xác thực | Qua app 9Proxy, forward port cục bộ | User/pass hoặc whitelist IP, chạy thẳng trên dashboard |
+| Phù hợp nhất | Nuôi tài khoản, giữ phiên, tải nặng | Tool automation, request nhẹ, xoay IP nhiều |
 
-One thing worth flagging on prices: 9Proxy ran the first price adjustment in its history effective **June 1, 2026**, raising IP-based and bundle pricing while leaving GB-based packages untouched. Older pages still advertising "from $0.015/IP" reflect the pre-adjustment entry rate; the current published floor is roughly **$0.018/IP** at the largest tiers, and **$0.68/GB** at the top bandwidth tiers. If you're comparing against a review written before mid-2026, the IP numbers you're reading are probably stale.
+Điểm cần lưu ý: gói theo IP bắt buộc dùng app desktop (có bản cho Windows, macOS và Linux), còn gói theo GB chạy hoàn toàn trên trình duyệt. Nếu bạn làm việc trên VPS hoặc máy chủ không cài được app, gói theo GB là lựa chọn thực tế hơn.
 
-### IP-based residential plans
+👉 [Tạo tài khoản 9Proxy và chọn mô hình tính giá theo nhu cầu](https://bit.ly/9-Proxy)
 
-These are the plans to look at if your work involves long sessions, account-based tasks, or data volumes that make per-GB math scary. Unlimited traffic per IP is the actual discount.
+## Bảng giá 9Proxy hiện tại
 
-| Package | Rate per IP | Total | Billing |
-| --- | --- | --- | --- |
-| 100 IPs | $0.24 | **$24** | One-off, IPs don't expire · [ 100 IPs 套餐](https://bit.ly/9-Proxy) |
-| 500 IPs | $0.144 | **$72** | One-off · [ 选择 500 IPs 方案](https://bit.ly/9-Proxy) |
-| 1,000 IPs + 500 bonus | $0.084 | **$126** | One-off · [ 1,500 IPs 优惠包](https://bit.ly/9-Proxy) |
-| 2,500 IPs | $0.084 | **$210** | One-off · [ 解锁 2,500 IPs 价格](https://bit.ly/9-Proxy) |
-| 5,000 IPs | $0.072 | **$360** | One-off · [ 查看 5,000 IPs 套餐](https://bit.ly/9-Proxy) |
-| 15,000 IPs | $0.048 | **$720** | One-off · [ 15,000 IPs 批量方案](https://bit.ly/9-Proxy) |
-| 25,000 IPs | $0.035 | **$863** | One-off · [ 25,000 IPs 代理包](https://bit.ly/9-Proxy) |
-| 50,000 IPs | $0.029 | **$1,438** | One-off · [ 50,000 IPs 大额套餐](https://bit.ly/9-Proxy) |
+Một mốc thời gian cần biết: 9Proxy đã điều chỉnh giá lần đầu trong lịch sử hoạt động, áp dụng từ ngày 1/6/2026 cho gói theo IP và gói kết hợp. Gói theo GB giữ nguyên giá. Bảng dưới đây là giá niêm yết sau lần điều chỉnh đó — vẫn nên mở lại trang đăng ký để xác nhận trước khi thanh toán, vì các mốc dung lượng có thể được cập nhật thêm.
 
-High-volume business tiers, for teams buying in the hundreds of thousands:
+### Gói theo IP: trả một lần, băng thông không giới hạn
 
-| Package | Rate per IP | Total | Billing |
-| --- | --- | --- | --- |
-| 100,000 IPs | $0.023 | **$2,300** | One-off · [ 企业级 10 万 IPs](https://bit.ly/9-Proxy) |
-| 200,000 IPs | $0.021 | **$4,140** | One-off · [ 20 万 IPs 方案](https://bit.ly/9-Proxy) |
-| 500,000 IPs | $0.018 | **$8,625** | One-off · [ 50 万 IPs 报价](https://bit.ly/9-Proxy) |
-
-### GB-based residential plans
-
-Pay for traffic, generate as many endpoints as your balance allows. Rotation and sticky sessions are both supported; targeting covers country, state, city and ISP.
-
-| Package | Rate per GB | Total | Validity | Billing |
+| Số IP | Đơn giá mỗi IP | Tổng | Ghi chú | Mua |
 | --- | --- | --- | --- | --- |
-| 5 GB | $3.00 | **$15** | 180 days | One-off · [ 5 GB 试用包](https://bit.ly/9-Proxy) |
-| 50 GB + 5 GB bonus | $2.10 | **$105** | 180 days | One-off · [ 55 GB 流量包](https://bit.ly/9-Proxy) |
-| 100 GB | $1.50 | **$150** | 180 days | One-off · [ 100 GB 流量套餐](https://bit.ly/9-Proxy) |
-| 200 GB | $1.00 | **$200** | 180 days | One-off · [ 200 GB 方案](https://bit.ly/9-Proxy) |
-| 1,000 GB | $0.80 | **$800** | 180 days | One-off · [ 1,000 GB 大流量包](https://bit.ly/9-Proxy) |
-| 2,000 GB | $0.75 | **$1,500** | 180 days | One-off · [ 2,000 GB 流量方案](https://bit.ly/9-Proxy) |
+| 100 IP | 0,24$ | 24$ | Mức vào thử phổ biến | [Lấy gói 100 IP giá 24$](https://bit.ly/9-Proxy) |
+| 500 IP | 0,144$ | 72$ | Dùng cho nhóm nhỏ | [Lấy gói 500 IP giá 72$](https://bit.ly/9-Proxy) |
+| 1.000 IP + tặng 500 IP | 0,084$ | 126$ | Tính theo 1.500 IP nhận được | [Lấy gói 1.000 IP tặng 500 IP](https://bit.ly/9-Proxy) |
+| 2.500 IP | 0,084$ | 210$ | Nhiều đầu việc song song | [Lấy gói 2.500 IP giá 210$](https://bit.ly/9-Proxy) |
+| 5.000 IP | 0,072$ | 360$ | Mức của agency nhỏ | [Lấy gói 5.000 IP giá 360$](https://bit.ly/9-Proxy) |
+| 15.000 IP | 0,048$ | 720$ | Nhiều nhóm theo khu vực | [Lấy gói 15.000 IP giá 720$](https://bit.ly/9-Proxy) |
+| 25.000 IP | 0,035$ | 863$ | Mức cho reseller | [Lấy gói 25.000 IP giá 863$](https://bit.ly/9-Proxy) |
+| 50.000 IP | 0,029$ | 1.438$ | Vận hành quy mô lớn | [Lấy gói 50.000 IP giá 1.438$](https://bit.ly/9-Proxy) |
 
-Enterprise bandwidth, where the 180-day clock goes away:
+Với khối lượng doanh nghiệp, mức giá tiếp tục giảm: 100.000 IP giá 2.300$, 200.000 IP giá 4.140$, và 500.000 IP giá 8.625$ (tức khoảng 0,018$ mỗi IP). Nhóm này thường phải liên hệ trực tiếp để chốt điều khoản.
 
-| Package | Rate per GB | Total | Validity | Billing |
+### Gói theo GB: linh hoạt, hiệu lực 180 ngày
+
+| Dung lượng | Đơn giá mỗi GB | Tổng | Hiệu lực | Mua |
 | --- | --- | --- | --- | --- |
-| 3,000 GB | $0.72 | **$2,160** | Unlimited | One-off · [ 3,000 GB 长期套餐](https://bit.ly/9-Proxy) |
-| 6,000 GB | $0.70 | **$4,200** | Unlimited | One-off · [ 6,000 GB 流量包](https://bit.ly/9-Proxy) |
-| 10,000 GB | $0.68 | **$6,800** | Unlimited | One-off · [ 10,000 GB 企业方案](https://bit.ly/9-Proxy) |
+| 5 GB | 3,00$ | 15$ | 180 ngày | [Lấy gói 5 GB giá 15$](https://bit.ly/9-Proxy) |
+| 50 GB + tặng 5 GB | 2,10$ | 105$ | 180 ngày | [Lấy gói 50 GB tặng 5 GB](https://bit.ly/9-Proxy) |
+| 100 GB | 1,50$ | 150$ | 180 ngày | [Lấy gói 100 GB giá 150$](https://bit.ly/9-Proxy) |
+| 200 GB | 1,00$ | 200$ | 180 ngày | [Lấy gói 200 GB giá 200$](https://bit.ly/9-Proxy) |
+| 1.000 GB | 0,80$ | 800$ | 180 ngày | [Lấy gói 1.000 GB giá 800$](https://bit.ly/9-Proxy) |
+| 2.000 GB | 0,75$ | 1.500$ | 180 ngày | [Lấy gói 2.000 GB giá 1.500$](https://bit.ly/9-Proxy) |
+| 3.000 GB (Enterprise) | 0,72$ | 2.160$ | Không hết hạn | [Xem gói Enterprise 3.000 GB](https://bit.ly/9-Proxy) |
+| 6.000 GB (Enterprise) | 0,70$ | 4.200$ | Không hết hạn | [Xem gói Enterprise 6.000 GB](https://bit.ly/9-Proxy) |
+| 10.000 GB (Enterprise) | 0,68$ | 6.800$ | Không hết hạn | [Xem gói Enterprise 10.000 GB](https://bit.ly/9-Proxy) |
 
-### Bundle plans
+Gói Enterprise còn có chế độ nhóm: một chủ tài khoản kèm tối đa 5 thành viên, dung lượng chia sẻ trong nhóm không bị tính hạn 180 ngày, có log hoạt động và giới hạn dung lượng riêng cho từng người.
 
-Built for mixed workloads — some tasks need a stable IP, others need traffic.
+### Gói kết hợp: có cả IP lẫn dung lượng
 
-| Bundle | Package | Price | Billing |
+Ba gói này dành cho trường hợp bạn vừa cần IP để giữ phiên, vừa cần traffic để chạy tool xoay liên tục. Dung lượng đi kèm cũng có hiệu lực 180 ngày, nên không bị ép dùng hết trong một tháng.
+
+| Gói | Nội dung | Giá | Mua |
 | --- | --- | --- | --- |
-| Starter | 100 IPs + 5 GB | **$30** | One-off · [ Starter 组合包](https://bit.ly/9-Proxy) |
-| Popular | 1,500 IPs + 50 GB | **$180** | One-off · [ Popular 组合套餐](https://bit.ly/9-Proxy) |
-| Pro | 5,000 IPs + 500 GB | **$720** | One-off · [ Pro 组合方案](https://bit.ly/9-Proxy) |
+| Starter | 100 IP + 5 GB | 30$ | [Lấy gói Starter 100 IP + 5 GB](https://bit.ly/9-Proxy) |
+| Popular | 1.500 IP + 50 GB | 180$ | [Lấy gói Popular 1.500 IP + 50 GB](https://bit.ly/9-Proxy) |
+| Pro | 5.000 IP + 500 GB | 720$ | [Lấy gói Pro 5.000 IP + 500 GB](https://bit.ly/9-Proxy) |
 
-## Which structure is actually cheaper for your workload
+Nếu bạn đang cân nhắc giữa gói 100 IP giá 24$ và gói Starter giá 30$: chênh 6$ để có thêm 5 GB dung lượng xoay. Với người chưa biết công việc của mình sẽ nặng bao nhiêu, gói Starter thường là điểm khởi đầu an toàn hơn.
 
-Here's the part the pricing pages won't do for you. Take a project that moves about 100 GB.
+## Rẻ nhưng vẫn phải là IP dân cư thật
 
-- Buying it as bandwidth: **$150** on the 100 GB tier.
-- Buying it as IPs: **$24** for 100 IPs, with unlimited traffic.
+Giá thấp chỉ có ý nghĩa nếu IP còn sạch. Đây là phần dễ bị bỏ qua nhất khi săn proxy rẻ.
 
-That gap is the whole argument for IP-based plans — if your architecture can spread the work across 100 IPs and keep each session short enough to fit inside a residential IP's lifespan. Where it falls apart is burstiness. Residential IPs live a few hours to a day, so a job that needs 100 concurrent clean IPs *right now* burns inventory fast, and you'll be topping up. Bandwidth plans don't care about that; they rotate through the full pool on demand.
+9Proxy công bố pool hơn 20 triệu IP dân cư tại hơn 90 quốc gia, có Việt Nam, với uptime niêm yết 99,95% và hỗ trợ SOCKS5/HTTP(S). Bên cạnh đó là vài cơ chế cụ thể giúp giảm chi phí vận hành:
 
-A rough sorting rule:
+- **Danh sách IP dùng trong 24 giờ qua** cho phép lấy lại IP cũ, tiết kiệm khoảng 20–30% lượng IP tiêu thụ cho các tác vụ lặp lại.
+- **Tự động thay IP**: hệ thống phát hiện IP offline và thay trong khoảng 60 giây, phù hợp với tool có logic retry.
+- **Xoay tự động theo khoảng thời gian tuỳ chỉnh** trên các port đã chọn, dùng cho mô hình tính theo IP.
+- **Nhắm mục tiêu theo quốc gia, bang, thành phố, ZIP hoặc ISP** ở mô hình tính theo GB.
 
-- **Steady, session-heavy, unpredictable data volume** → IP-based. Multi-account management, long-running scraping, anything where "it stopped because I ran out of gigs" would be a catastrophe.
-- **Bursty, rotation-heavy, light per request** → GB-based. SERP monitoring, price checks, ad verification, geo-testing.
-- **Both on the same account** → a bundle, since buying the pieces separately usually costs more.
+Về hiệu năng thực tế, dữ liệu công khai có chút khác nhau. Một bài đánh giá độc lập ghi nhận tốc độ thường rơi vào khoảng 50–100 Mbps, uptime gần 99% khi dùng để crawl và quản lý tài khoản; cùng bài đó cũng nêu việc một số dịch vụ streaming như Netflix có thể vẫn phát hiện proxy. Ngược lại, các trang so sánh tổng hợp đặt 9Proxy ở mức tỉ lệ thành công khoảng 97% và thời gian phản hồi trung bình khoảng 1.300 ms.
 
-## Cutting the balance further
+Cách đọc hai con số này: với các trang phổ thông, mức đó là chấp nhận được so với giá; với các mục tiêu chống bot gắt, bạn nên coi tỉ lệ thành công là biến số cần tự kiểm tra bằng vài chục request đầu tiên trước khi mua số lượng lớn.
 
-A few things genuinely reduce what you pay, in rough order of how much they matter:
+## Thanh toán từ Việt Nam: Momo, ShopeePay và chuyển khoản nội địa
 
-**Reuse yesterday's IPs.** 9Proxy's "Today List" feature lets you reuse IPs issued in the last 24 hours without paying again. Third-party reviews put the saving at up to 30% on recurring daily tasks — that's the single biggest lever if your work is repetitive rather than one-shot. The vendor also documents a 60-second automatic replacement policy for IPs that fail.
+Với người ở Việt Nam, khâu hay chặn nhất không phải giá mà là cách trả tiền. 9Proxy hiện nhận thẻ Visa/Mastercard, Google Pay, crypto, và quan trọng hơn là cổng thanh toán nội địa dạng chuyển khoản ngân hàng. Cổng nội địa này còn được tích hợp thêm ví điện tử phổ biến như Momo, ShopeePay và Appota, thanh toán bằng quét QR.
 
-**Check your payment method.** Selected payment methods have carried an extra **5% discount or 5% product bonus**. It's applied at checkout, not advertised on the plan grid.
+Theo mô tả từ chính đội ngũ 9Proxy, với cổng nội địa thì sau khi chuyển đúng thông tin, IP vào tài khoản gần như ngay lập tức. Đây là điểm đáng tính nếu bạn không muốn lằng nhằng với thẻ quốc tế hoặc phí chuyển đổi ngoại tệ.
 
-**Use a referral link.** 9Proxy's partner program advertises a **5% discount for referred users**, which is what an invite-based signup carries — you'll see it on your first order when you [👉 注册 9Proxy 账户并领取推荐优惠](https://bit.ly/9-Proxy).
+Về dùng thử: 9Proxy không đặt nút trial công khai trên trang chủ. Các đánh giá độc lập cho thấy trial code thường phát qua chương trình khuyến mãi hoặc qua yêu cầu trực tiếp với bộ phận hỗ trợ. Hỗ trợ hoạt động 24/7 qua Telegram, email và hệ thống ticket – bao gồm cả Telegram riêng cho nhóm bán hàng và đối tác.
 
-**Watch the seasonal campaigns — and check the expiry dates.** The Lunar New Year campaign ran a code worth **8% off** regular IP and GB packages between January 23 and February 23, 2026. April 2026 had a **9% back** offer: your first paid GB order of the month generated a single-use coupon (format `X9_[number]`) that appeared under Dashboard → My Account → My Coupons and applied automatically at checkout. That coupon expired **June 30, 2026**, and it never applied to bundle or IP-based orders. Both campaigns are finished, so treat them as evidence of how the promo cycle works rather than something to claim at checkout today — current offers live in the dashboard's coupon section.
+## Mua trực tiếp hay mua CDKey qua đại lý trong nước?
 
-Payments cover cards, crypto (USDT, BTC, ETH, LTC, DOGE among others), Alipay, Apple Pay and Google Pay, which matters if you're outside card-friendly jurisdictions.
+Đây là câu hỏi mà người Việt tìm "mua proxy giá rẻ" gần như chắc chắn sẽ gặp, vì có khá nhiều đại lý trong nước bán lại 9Proxy dưới dạng CDKey, thanh toán bằng VND, kèm hỗ trợ cài đặt qua TeamViewer/AnyDesk.
 
-## What you give up at this price point
+Điểm được của kênh đại lý: bạn trả bằng tiền Việt, được hướng dẫn cài, và có người chịu trách nhiệm nếu key lỗi. Điểm mất: bạn thường trả cao hơn giá gốc một khoản chênh, và bạn không nắm tài khoản gốc – nghĩa là không tự xem được lịch sử trừ IP, không tự tạo sub-user, không tự đổi cấu hình xoay.
 
-None of the above is free money, and pretending otherwise would be a disservice.
+Lời khuyên mang tính thực dụng: nếu bạn chỉ mua một lần, số lượng nhỏ, không muốn tự cấu hình thì kênh đại lý là lựa chọn nhanh. Còn nếu bạn dùng thường xuyên, việc tự tạo tài khoản và nạp thẳng có lợi hơn về lâu dài: bạn quản lý được số dư, xem được IP nào đã tiêu, và tự chỉnh cấu hình xoay mà không phải chờ ai.
 
-- **Pool size.** 9Proxy advertises 20M+ residential IPs across 90+ countries. The enterprise incumbents advertise 100M+ and up. That gap shows up on narrow targets and Tier 3 geographies, where the budget tier's success rate drops faster than the premium tier's.
-- **No mobile proxies.** The lineup is residential, full stop. Datacenter proxies have been listed as "coming soon" by resellers but aren't part of the current documented product set.
-- **Windows dependency on the IP model.** The IP-based product routes traffic through the 9Proxy desktop app. If your stack runs headless on Linux, the GB model is the practical path, since it works directly from the dashboard with user/pass or IP whitelisting.
-- **Streaming is not the use case.** One third-party review found major streaming platforms frequently blocked 9Proxy's IPs. For unblocking Netflix, use a VPN, not a residential proxy pool.
-- **City-level targeting is narrower than premium providers.** The docs list country, state, city and ISP targeting; a 2026 cost comparison still rated its city granularity as limited next to the top-tier names.
-- **Trials are limited.** There's no free tier published on the pricing page. Representatives have said limited trials are offered to new users subject to availability, and at least one directory lists a $0.02 one-off paid trial. Don't plan around a free trial you haven't confirmed — the smallest paid entry point is **$15** for 5 GB or **$24** for 100 IPs, and both are low-risk enough to test with.
+👉 [Tự tạo tài khoản 9Proxy và nạp tiền bằng ví Việt Nam](https://bit.ly/9-Proxy)
 
-## FAQ
+## Cách giữ hoá đơn thấp khi dùng hằng ngày
 
-**Are cheap proxies safe to use?**
-Cheap *paid* is a fundamentally different product from free. Free pools are shared, often logged, and commonly monetized by reselling your traffic. A $24 IP package from a provider that documents its network is not the same risk category.
+Vài nguyên tắc đã được kiểm chứng từ chính cách hệ thống 9Proxy vận hành:
 
-**Do 9Proxy balances expire?**
-IP-based packages: no. Those IPs stay in your account until used. GB-based: 180 days of validity, except the 3,000 / 6,000 / 10,000 GB Enterprise tiers, which have unlimited validity.
+1. **Mua cỡ nhỏ trước, đo lượng dùng thật.** Gói 100 IP giá 24$ đủ để biết một công việc cụ thể tốn bao nhiêu IP mỗi ngày. Mua 5.000 IP ngay từ đầu là cách nhanh nhất để đóng băng tiền trong số dư không dùng tới.
+2. **Tận dụng danh sách IP dùng lại.** Với tác vụ lặp lại trên cùng nhóm mục tiêu, việc lấy lại IP trong vòng 24 giờ cắt được khoảng 20–30% lượng IP tiêu thụ.
+3. **Đừng mua GB nếu công việc tải nặng.** Một job crawl trang nặng JavaScript có thể ngốn 2–5 MB mỗi trang; 5 GB không đủ cho một dự án nghiêm túc. Ngược lại, nếu bạn chỉ kiểm tra vị trí, poll API, xác minh quảng cáo thì mua IP là lãng phí.
+4. **Tận dụng dung lượng 180 ngày.** Gói GB không bắt bạn dùng hết trong một tháng, nên mua ở mốc 100–200 GB thường rẻ hơn về đơn giá so với việc mua lắt nhắt nhiều lần ở mốc 5 GB.
+5. **Xác định đúng khu vực trước khi mua.** IP Việt Nam và IP Mỹ không cùng mức giá ở nhiều nhà cung cấp; chọn sai khu vực rồi phải mua lại là khoản phí oan phổ biến nhất.
 
-**Is there a monthly subscription?**
-No. Everything is a prepaid balance with volume-based discounts. There's no rebill, which is why buying before a price adjustment is a one-time decision rather than a temporary discount.
+## Vài điểm yếu nên biết trước khi nạp tiền
 
-**Do I need to buy IPs and bandwidth separately?**
-No — the bundle plans exist precisely for that, and they're cheaper than the two components bought separately.
+Không có dịch vụ nào rẻ mà không có đánh đổi, và 9Proxy cũng vậy.
 
-**What protocols are supported?**
-HTTP/HTTPS and SOCKS5, with SOCKS5 supported natively, including for anti-detect browsers and custom scripts.
+Thứ nhất, gói theo IP yêu cầu cài app desktop. Ai làm việc trên VPS Linux không có giao diện hoặc trên môi trường đám mây bị giới hạn quyền cài đặt sẽ thấy bất tiện – trong trường hợp đó nên chuyển sang gói theo GB.
 
-## The short version
+Thứ hai, IP dân cư vốn không sống lâu: vài giờ, tối đa khoảng một ngày. Đây là đặc tính của IP dân cư thật, không phải lỗi, nhưng nếu bạn cần một IP cố định cho tài khoản dài hạn thì phải chuẩn bị phương án thay thế.
 
-If you're shopping on price alone, the number that matters isn't the $/GB on the landing page — it's whether the billing structure matches how your workload actually consumes capacity. Unlimited-bandwidth IP packages at $24 for 100 IPs are the cheapest route for session-based work. Bandwidth packages from $3/GB down to $0.75/GB fit rotation-heavy jobs. And the thing that has historically made 9Proxy cheap isn't a discount code at all: it's that nothing rebills and nothing gets thrown away at the end of a month.
+Thứ ba, độ ổn định dịch vụ. Trong khoảng giữa năm 2026, một số trang đại lý proxy và review người dùng ghi nhận 9Proxy có giai đoạn gián đoạn truy cập. Những báo cáo đó phần lớn xuất phát từ các bên đang bán sản phẩm thay thế, nên không nên xem là kết luận, nhưng cũng không nên bỏ qua. Nguyên tắc an toàn vẫn luôn giống nhau với mọi nhà cung cấp proxy: đừng dồn toàn bộ ngân sách vào một tài khoản, nạp gói nhỏ trước, kiểm tra thực tế rồi mới mua số lượng lớn.
 
-If that matches the shape of your project, [👉 在 9Proxy 领取当前最低价 IP 与流量套餐](https://bit.ly/9-Proxy) and start at the smallest tier. Test the success rate on your own targets before you buy 15,000 IPs on someone else's benchmark.
+Thứ tư, đừng kỳ vọng dùng cho streaming. Proxy dân cư giá rẻ phù hợp với crawl, quản lý tài khoản, kiểm tra quảng cáo và SEO; một số nền tảng streaming vẫn phát hiện được.
+
+## Câu hỏi thường gặp khi mua proxy giá rẻ
+
+**Nên chọn gói theo IP hay theo GB?**
+Nếu công việc cần giữ phiên đăng nhập và tải dữ liệu nặng, chọn theo IP. Nếu công việc chạy nhiều request nhẹ và cần đổi IP liên tục, chọn theo GB. Nếu chưa rõ, mua gói kết hợp nhỏ để thử.
+
+**IP chưa dùng có bị mất không?**
+Với gói theo IP, IP chưa dùng không hết hạn – chỉ bị trừ khi bạn thực sự kết nối. Với gói theo GB, dung lượng có hiệu lực 180 ngày, riêng gói Enterprise thì không giới hạn thời gian.
+
+**Trả tiền bằng tiền Việt được không?**
+Được. Ngoài thẻ quốc tế, Google Pay và crypto, 9Proxy có cổng thanh toán nội địa hỗ trợ chuyển khoản ngân hàng và ví điện tử như Momo, ShopeePay, Appota.
+
+**9Proxy có dùng thử miễn phí không?**
+Không có nút dùng thử công khai trên trang chủ. Trial code thường xuất hiện theo chương trình khuyến mãi hoặc khi bạn hỏi trực tiếp bộ phận hỗ trợ.
+
+**Proxy này có dùng được với Dolphin Anty, AdsPower, BitBrowser không?**
+Được. Đây là các giao thức SOCKS5/HTTP(S) chuẩn, nhập theo dạng host:port:user:pass, nên hầu hết antidetect browser và tool automation đều nhận.
+
+## Kết lại
+
+Mua proxy giá rẻ không khó, cái khó là mua đúng mô hình tính tiền. Với nhu cầu nuôi tài khoản và giữ phiên, gói theo IP với băng thông không giới hạn là lựa chọn hợp lý, và mức vào thử 24$ cho 100 IP không phải khoản lớn để đo hiệu quả thực tế. Với nhu cầu chạy tool xoay liên tục, gói theo GB ở mốc 100–200 GB cho đơn giá tốt hơn hẳn mốc 5 GB.
+
+Cách tiếp cận an toàn cho cả hai trường hợp: bắt đầu nhỏ, đo lượng tiêu thụ thật trong vài ngày, rồi mới nâng gói. Số dư IP chưa dùng không mất, dung lượng GB có 180 ngày để dùng, nên không có áp lực phải chốt số lượng lớn ngay từ đầu.
+
+👉 [Bắt đầu với 9Proxy và xem bảng giá đầy đủ theo số lượng](https://bit.ly/9-Proxy)
